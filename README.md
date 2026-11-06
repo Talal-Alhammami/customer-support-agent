@@ -99,7 +99,7 @@ flowchart TD
     CONTEXT --> LLM[Local Hugging Face LLM]
     THRESHOLD -->|no| FALLBACK[Safe fallback]
 
-    DB --> ORDER[Order Response] RESPONSE[JSON response]
+    DB --> ORDER[Order Response]
 
     ORDER --> RESPONSE[JSON Response]
     LLM --> RESPONSE
