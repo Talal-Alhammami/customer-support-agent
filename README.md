@@ -312,4 +312,3 @@ An early version treated any four-digit number as an order ID. Pytest cases now 
 AI / Machine Learning and Full-Stack AI Engineering
 
 Built as a hands-on project to explore the complete lifecycle of an AI application, from local LLM inference and retrieval to API design, agent workflows, testing, frontend integration and continuous integration.
-```
