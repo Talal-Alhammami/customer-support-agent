@@ -1,0 +1,12 @@
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["scratch"]
+
+[tool.ruff.lint]
+# E/W = style, F = errors (unused imports/variables), I = import order, B = likely bugs
+select = ["E", "W", "F", "I", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
