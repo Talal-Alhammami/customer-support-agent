@@ -21,13 +21,15 @@ It runs locally and needs no paid LLM API.
 ![Pytest](https://img.shields.io/badge/Tests-Pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)
 ![Ruff](https://img.shields.io/badge/Lint-Ruff-D7FF64?style=flat-square&logo=ruff&logoColor=black)
 ![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
+![CI](https://github.com/talal-alhammami/customer-support-agent/actions/workflows/ci.yml/badge.svg)
 
 </div>
 
-<!--
-Add a screenshot of the chat UI here, for example:
-![Chat UI](docs/customer-support-ui.png)
--->
+<div align="center">
+
+![Demo](docs/demo.gif)
+
+</div>
 
 ---
 
@@ -252,6 +254,8 @@ The router tests do not load any model, so they finish in under a second.
 ---
 
 ## Example Conversations
+
+![Chat UI](docs/customer-support-ui.png)
 
 | Customer message | Route | Result |
 |---|---|---|
