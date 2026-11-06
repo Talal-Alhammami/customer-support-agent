@@ -36,7 +36,7 @@ It runs locally and needs no paid LLM API.
 
 1. [Overview](#overview)
 2. [Features](#features)
-3. [Architecture](#architecture)
+3. [System Architecture](#system-architecture)
 4. [Technology Stack](#technology-stack)
 5. [Project Structure](#project-structure)
 6. [Getting Started](#getting-started)
@@ -76,7 +76,11 @@ Most simple chatbots send every message straight to an LLM. This project first d
 
 ---
 
-## Architecture
+## System Architecture
+
+The diagram below shows how a user request flows through the React frontend,
+FastAPI backend, LangGraph agent, intent routing, RAG pipeline, order database,
+and response layer.
 
 ```mermaid
 flowchart TD
@@ -85,22 +89,26 @@ flowchart TD
     API --> AGENT[LangGraph agent]
     AGENT --> ROUTER{Intent router}
 
-    ROUTER -->|order_tracking| DB[(SQLite)]
-    ROUTER -->|policy| RAG[Semantic search]
-    ROUTER -->|ask_order_id| CLARIFY[Clarification]
+    ROUTER -->|order_tracking| DB[(SQLite order Database)]
+    ROUTER -->|policy / knowledge| RAG[Semantic search / RAG]
+    ROUTER -->|missing order ID| CLARIFY[Clarification]
     ROUTER -->|smalltalk| SMALL[Small talk]
 
-    RAG --> THRESHOLD{Score above threshold?}
-    THRESHOLD -->|yes| LLM[Local LLM]
+    RAG --> THRESHOLD{Relevant context found?}
+    THRESHOLD -->|yes| CONTEXT[Retrieved Context + User Question]
+    CONTEXT --> LLM[Local Hugging Face LLM]
     THRESHOLD -->|no| FALLBACK[Safe fallback]
 
-    DB --> RESPONSE[JSON response]
+    DB --> ORDER[Order Response] RESPONSE[JSON response]
+
+    ORDER --> RESPONSE[JSON Response]
     LLM --> RESPONSE
     FALLBACK --> RESPONSE
     CLARIFY --> RESPONSE
     SMALL --> RESPONSE
 
     RESPONSE --> FE
+    FE --> U
 ```
 
 ### Request flow for a policy question
